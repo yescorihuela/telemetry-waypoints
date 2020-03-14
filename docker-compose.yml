@@ -1,0 +1,55 @@
+version: '3.6'
+
+services:
+
+  db_measurements:
+    container_name: db_measurements
+    image: "postgres:12"
+    volumes :
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+    env_file:
+      - .env.postgres
+    ports:
+      - "5433:5432"
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    command: redis-server
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--bind", "redis", "--port", "6379"]
+
+
+  app_sidekiq:
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+    volumes:
+      - .:/app
+    command: bundle exec sidekiq
+    container_name: app_sidekiq
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+  app_backend:
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    command: bundle exec rails s -p 3000 -b 0.0.0.0
+    container_name: app_backend
+    env_file:
+      - .env
+    depends_on:
+      - db_measurements
+      - app_sidekiq
+
+volumes:
+    pgdata:
