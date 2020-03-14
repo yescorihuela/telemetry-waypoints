@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Vehicle, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do 
+    subject{ Vehicle.new(vehicle_identifier: 'HA-3452') }
+
+    it { should validate_presence_of(:vehicle_identifier) }
+    it { should validate_uniqueness_of(:vehicle_identifier) }
+  end
 end

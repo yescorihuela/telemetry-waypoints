@@ -4,7 +4,7 @@ services:
 
   db_measurements:
     container_name: db_measurements
-    image: "postgres:12"
+    image: "postgres:11"
     volumes :
       - pgdata:/var/lib/postgresql/data
     restart: always
