@@ -3,7 +3,7 @@ class CreateWaypoints < ActiveRecord::Migration[5.2]
     create_table :waypoints do |t|
       t.decimal :latitude, precision: 16, scale: 16
       t.decimal :longitude, precision: 16, scale: 16
-      t.datetime :send_at
+      t.datetime :sent_at
       t.references :vehicle, foreign_key: true
 
       t.timestamps
