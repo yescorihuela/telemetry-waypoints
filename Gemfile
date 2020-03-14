@@ -38,7 +38,7 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'rspec', '>= 3.8', '< 3.9'
+  gem 'rspec-rails', '~> 3.9', '>= 3.9.1'
 end
 
 gem 'listen', '~> 3.2', '>= 3.2.1'
