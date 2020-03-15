@@ -41,7 +41,6 @@ end
 gem 'listen', '~> 3.2', '>= 3.2.1'
 gem 'sidekiq', '~> 6.0', '>= 6.0.5'
 gem 'sidekiq-scheduler'
-gem 'sidekiq-unique-jobs'
 gem 'sinatra', require: nil
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
