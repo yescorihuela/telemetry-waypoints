@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       post 'gps', to: 'gps#create_waypoint', as: :gps_create_waypoint, format: :json
     end
   end
+
+  get 'map', to: 'maps#index', as: :gps_map
 end

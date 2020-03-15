@@ -1,5 +1,6 @@
 class GpsMeasurementsWorker
   include Sidekiq::Worker
+  
   sidekiq_options queue: :gps_measurements, retry: false, backtrace: false
 
   def perform(waypoint)
@@ -7,7 +8,7 @@ class GpsMeasurementsWorker
     vehicle_identifier = vehicle.vehicle_identifier
     
     begin
-      vehicle.id = get_or_create_vehicle_in_cache(vehicle)[:id]
+      vehicle.id = Services::LastWaypointsVehicle.get_or_create_vehicle_in_cache(vehicle_identifier)[:id]
     rescue
       vehicle.id = nil
     end
@@ -22,31 +23,22 @@ class GpsMeasurementsWorker
       end
       vehicle = OpenStruct.new(:id => vehicle.id, **waypoint.transform_keys(&:to_sym))
     end
-    get_or_create_vehicle_in_cache(vehicle)
-    create_waypoint(vehicle, waypoint)
+    Services::LastWaypointsVehicle.get_or_create_vehicle_in_cache(vehicle_identifier, vehicle)
+    create_waypoint(vehicle.id, waypoint)
   end
 
 
-  def create_waypoint(vehicle, waypoint)
+  def create_waypoint(vehicle_id, waypoint)
     new_waypoint = OpenStruct.new(waypoint)
     new_waypoint.delete_field('vehicle_identifier')
-    new_waypoint[:vehicle_id] = vehicle.id 
+    new_waypoint[:vehicle_id] = vehicle_id 
 
     begin
-
       Waypoint.create!(new_waypoint.to_h)
     rescue => exception
       Rails.logger.warning exception
     end
   end
 
-  def get_or_create_vehicle_in_cache(vehicle)
-    vehicle_identifier = vehicle.vehicle_identifier
 
-    if vehicle.id.nil?
-      Rails.cache.read(vehicle_identifier)
-    else
-      Rails.cache.write(vehicle_identifier, vehicle)
-    end
-  end
 end
