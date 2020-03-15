@@ -10,7 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
+//= require jquery
 //= require_tree .
+
+$(document).ready(function() {
+  if ($('#map').length > 0) {
+    var google_map = $('meta[name=google_maps]').attr("content");
+    $.getScript(`https://maps.googleapis.com/maps/api/js?key=${google_map}&callback=initMap`);
+  }
+})

@@ -10,6 +10,16 @@ class Api::V1::GpsController < ApplicationController
     render json: nil, status: :no_content
   end
 
+  def latest_waypoints
+    cache_waypoints = Services::LastWaypointsVehicle.get_vehicles_latest_waypoints
+    if cache_waypoints.empty?
+      @latest_waypoints = Vehicle.latest_waypoints
+    else
+      @latest_waypoints = cache_waypoints
+    end
+    render json: @latest_waypoints, status: :ok 
+  end
+
   private 
   def set_waypoint
     {
