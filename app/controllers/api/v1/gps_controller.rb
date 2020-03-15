@@ -6,7 +6,18 @@ class Api::V1::GpsController < ApplicationController
   end
 
   def create_waypoint
-    render json: params[:gp], status: :ok
+    GpsMeasurementsWorker.set(queue: :gps_measurements).perform_async(set_waypoint)
+    render json: nil, status: :no_content
+  end
+
+  private 
+  def set_waypoint
+    {
+      :latitude => params[:latitude],
+      :longitude => params[:longitude],
+      :sent_at => params[:sent_at],
+      :vehicle_identifier => params[:vehicle_identifier]
+    }
   end
 
 end

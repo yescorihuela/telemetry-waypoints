@@ -7,7 +7,12 @@ Rails.application.configure do
   # and recreated between test runs. Don't rely on the data there!
   config.cache_classes = true
   
-  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+  config.cache_store = :redis_cache_store, { 
+    url: ENV['REDIS_URL'],
+    namespace: 'vehicle_identifiers',
+    expires_in: 365.day,
+    db: 0
+  }
 
   # Do not eager load code on boot. This avoids loading your whole application
   # just for the purpose of running a single test. If you are using a tool that

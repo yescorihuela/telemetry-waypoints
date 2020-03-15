@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 2020_03_14_205358) do
   end
 
   create_table "waypoints", force: :cascade do |t|
-    t.decimal "latitude", precision: 16, scale: 16
-    t.decimal "longitude", precision: 16, scale: 16
+    t.decimal "latitude", precision: 16, scale: 14
+    t.decimal "longitude", precision: 16, scale: 14
     t.datetime "sent_at"
     t.bigint "vehicle_id"
     t.datetime "created_at", null: false

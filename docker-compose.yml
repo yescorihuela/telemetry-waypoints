@@ -16,11 +16,6 @@ services:
   redis:
     container_name: redis
     image: redis:alpine
-    command: redis-server
-    ports:
-      - "6379:6379"
-    command: ["redis-server", "--bind", "redis", "--port", "6379"]
-
 
   app_sidekiq:
     build:
@@ -28,7 +23,7 @@ services:
       context: .
     volumes:
       - .:/app
-    command: bundle exec sidekiq
+    command: bundle exec sidekiq -q gps_measurements,2
     container_name: app_sidekiq
     env_file:
       - .env
@@ -43,7 +38,7 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
-    command: bundle exec rails s -p 3000 -b 0.0.0.0
+    command: bundle exec rails s -p 3000 -b 0.0.0.0 -e development
     container_name: app_backend
     env_file:
       - .env

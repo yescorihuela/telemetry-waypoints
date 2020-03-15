@@ -4,4 +4,5 @@ class Waypoint < ApplicationRecord
   validates :latitude, presence: true
   validates :longitude, presence: true
   validates :sent_at, presence: true
+
 end
