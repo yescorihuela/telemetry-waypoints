@@ -18,6 +18,6 @@ module VehiclesWaypoints
     # the framework and any gems in your application.
     config.active_job.queue_adapter = :sidekiq
     config.autoload_paths << Rails.root.join("lib")
-    config.eager_load_paths << Rails.root.join("lib")    
+    config.eager_load_paths << Rails.root.join("lib") 
   end
 end

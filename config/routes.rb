@@ -11,5 +11,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'map', to: 'maps#index', as: :gps_map
+  get 'show', to: 'maps#index', as: :gps_map, format: :html
 end
