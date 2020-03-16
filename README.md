@@ -17,11 +17,11 @@ La aplicación consta de 3 endpoints que devuelven _responses_ en json, un endpo
 
 ### Endpoints
 ```bash
-/sidekiq            # Para monitorizar las colas y los workers
-/api/v1/check_api         # Para revisar si la API está en funcionamiento
+/sidekiq            		# Para monitorizar las colas y los workers
+/api/v1/check_api         	# Para revisar si la API está en funcionamiento
 /api/v1/latest_waypoints    # Muestra los últimos puntos de cada vehículo
-/api/v1/gps           # Registra cada measurement procedente del GPS del vehículo
-/show             # Para visualizar el mapa
+/api/v1/gps           		# Registra cada measurement procedente del GPS del vehículo
+/show             			# Para visualizar el mapa
 ```
 
 ### Modelos
