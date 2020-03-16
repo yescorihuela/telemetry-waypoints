@@ -18,10 +18,13 @@ function initMap() {
         title: waypoint.vehicle_identifier,
         icon: { url: getRandomTruck() }
       });
+      content = '<div> <h3 style="font-weight: bold; color: #404040">Vehicle: ' + waypoint.vehicle_identifier + '</h3>'
+      content +=  '<p style="font-weight: bold; color: #404040"> Latitude: ' + waypoint.latitude + ', Longitude: ' +waypoint.longitude + '</p></div>'
+      content +=  '<p style="font-weight: bold; color: #404040"> GPS measurement sent at: ' + waypoint.sent_at + '</p></div>'
+
 
       var infowindow = new google.maps.InfoWindow({
-        // content: '<p>Latest waypoint:' + marker.getPosition() + 'of vehicle: ' + waypoint.vehicle_identifier + '</p>'
-        content: '<div> <h3 style="font-weight: bold; color: #404040">Vehicle: ' + waypoint.vehicle_identifier + '</h3> <p style="font-weight: bold; color: #404040"> Latitude: ' + waypoint.latitude + ', Longitude: ' +waypoint.longitude + '</p></div>'
+        content: content
       });
 
         google.maps.event.addListener(marker, 'click', function() {

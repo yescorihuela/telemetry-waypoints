@@ -7,10 +7,10 @@ class Vehicle < ApplicationRecord
     sql_query = <<-query
       SELECT
         v.id,
-        latitude,
-        longitude,
-        vehicle_identifier,
-        MAX(sent_at) OVER (PARTITION BY vehicle_identifier) AS latest_coordinate 
+        latitude::decimal(18, 16),
+        longitude::decimal(18, 16),
+        MAX(sent_at) OVER (PARTITION BY vehicle_identifier) AS sent_at,
+        vehicle_identifier
       FROM
         waypoints wp 
         INNER JOIN

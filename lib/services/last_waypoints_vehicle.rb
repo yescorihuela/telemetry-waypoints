@@ -15,10 +15,13 @@ module Services
         current_cached_data = Rails.cache.redis.keys.select{|s| s =~ /#{Rails.cache.options[:namespace]}/ }
         current_vehicles = current_cached_data.map{|v| v.split(':')[1]}
         latest_cached_waypoints = Rails.cache.read_multi(*current_vehicles)
+
         current_vehicles.each do |vehicle|
           latest_waypoints.append(latest_cached_waypoints[vehicle].to_h)
         end
-      rescue
+        latest_waypoints
+      rescue => e
+        Rails.logger.error e
         []
       end
     end
