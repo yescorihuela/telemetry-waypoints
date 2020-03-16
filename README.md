@@ -74,3 +74,7 @@ La estrategia de caché está orientada a preservar los recursos de la máquina 
 Los testings aplicados en este challenge son mínimos, se limitaron a controladores y modelos, para los controladores, por recomendación del equipo de Rails, no se prueba el controlador sino el Request.
 Su ejecución se realiza de la siguiente manera:
 `$ rspec spec/models_or_controllers/file_spec.rb`
+
+## Disclamer
+
+Faltó una estrategía para cargar los vehículos preexistentes en caché a modo tal de hacer un _prehotting_ de la aplicación.
