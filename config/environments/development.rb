@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.log_level = :info
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -62,6 +62,4 @@ Rails.application.configure do
   config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log")
   Rails.logger.level = Logger::DEBUG
   Rails.logger.datetime_format = "%Y-%m-%d %H:%M:%S"
-  config.log_formatter = LogFormatter.new
-
 end

@@ -1,12 +1,9 @@
-version: '3.6'
-
 services:
-
   db_measurements:
     container_name: db_measurements
-    image: "postgres:11"
+    image: "postgres:16"
     volumes :
-      - pgdata:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
     restart: always
     env_file:
       - .env.postgres
@@ -31,14 +28,15 @@ services:
       - redis
 
   app_backend:
+    platform: linux/x86_64
     build:
       dockerfile: docker/Dockerfile
       context: .
     ports:
-      - "3000:3000"
+      - "8080:8080"
     volumes:
       - .:/app
-    command: bundle exec rails s -p 3000 -b 0.0.0.0 -e development
+    command: bundle exec rails s -p 8080 -b 0.0.0.0 -e development
     container_name: app_backend
     env_file:
       - .env
@@ -47,4 +45,4 @@ services:
       - app_sidekiq
 
 volumes:
-    pgdata:
+    postgres:

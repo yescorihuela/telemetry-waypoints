@@ -1,14 +1,14 @@
-# Beetrack Challenge
+# ControlDoc Challenge
 
-## Introducción
+## Introduction
 
-En una primera instancia, se efectua una evaluación sobre como pudiera diseñarle la app, en cuanto a tecnologías, fueron utilizadas las siguientes:
+The technologies used for this assessment are the following below:
 
-- Ruby 2.6.5
-- Rails 5.2.4.1
+- Ruby 3.2.0
+- Rails 6.1
 - Docker 19.03.5
 - Docker Compose 1.25.4
-- PostgreSQL 11
+- PostgreSQL 16
 - Redis 5.0.8
 - GoogleMaps 
 
@@ -17,15 +17,15 @@ La aplicación consta de 3 endpoints que devuelven _responses_ en json, un endpo
 
 ### Endpoints
 ```bash
-/sidekiq            		# Para monitorizar las colas y los workers
-/api/v1/check_api         	# Para revisar si la API está en funcionamiento
-/api/v1/latest_waypoints    # Muestra los últimos puntos de cada vehículo
-/api/v1/gps           		# Registra cada measurement procedente del GPS del vehículo
-/show             			# Para visualizar el mapa
+/sidekiq            		    # To monitorize queues and workers 
+/api/v1/check_api         	# To check if the API is working right now
+/api/v1/latest_waypoints    # Show the last waypoints of each vehicle
+/api/v1/gps           		  # Registering of each measurement from vehicle's GPS
+/show             			    # To show the map
 ```
 
-### Modelos
-Se encuentran solamente dos modelos:
+### Models
+There are only two models:
 
 - **Vehicle**: Almacena el `vehicle_identifier` con una llave primaria, es único.
 - **Waypoint**: Almacena datos de mediciones y se encuentra relacionado con Vehicle a través de una llave foránea (`vehicle_id`)
@@ -33,8 +33,8 @@ Se encuentran solamente dos modelos:
 ### Ejecución del proyecto
 Dado a que este proyecto se levantó en base a Docker por las ventajas que ofrece, su puesta en marcha es de la siguiente manera (el autor supone que el evaluador posee Docker instalado en la máquina):
 
-1. `(project-directory)$ docker-compose up --build -d # -d por si desean demonizarlo`
-2. `(project-directory)$ docker-compose exec app_backend rake db:create && rake db:migrate # para la creación de la base de datos y la ejecución de las migraciones`
+1. `(project-directory)$ docker compose up --build -d # -d por si desean demonizarlo`
+2. `(project-directory)$ docker compose exec app_backend rake db:create && rake db:migrate # para la creación de la base de datos y la ejecución de las migraciones`
 
 ### Google API
 Se ha definido una `GOOGLE_MAPS_API_KEY` en el archivo `.env` del contenedor app_backeend para trabajar en modo developer con la API de Google Maps.
