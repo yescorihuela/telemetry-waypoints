@@ -18,11 +18,11 @@ The application includes three JSON API endpoints, one HTML endpoint to display 
 
 ### Endpoints
 
-- **/sidekiq**: Monitors queues and workers in Sidekiq.
-- **/api/v1/check_api**: Checks if the API is currently operational.
-- **/api/v1/latest_waypoints**: Displays the latest waypoints for each vehicle.
-- **/api/v1/gps**: Registers GPS measurements from vehicles.
-- **/show**: Displays a map showing the latest positions of all vehicles.
+- **GET /sidekiq**: Monitors queues and workers in Sidekiq.
+- **GET /api/v1/check_api**: Checks if the API is currently operational.
+- **GET /api/v1/latest_waypoints**: Displays the latest waypoints for each vehicle.
+- **POST /api/v1/gps**: Registers GPS measurements from vehicles.
+- **GET /show**: Displays a map showing the latest positions of all vehicles.
 
 ### Models
 
