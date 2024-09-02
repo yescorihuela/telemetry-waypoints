@@ -5,20 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application' %>
-    <%= javascript_include_tag 'application' %>
-    <%= tag :meta, name: 'google_maps', content: ENV['GOOGLE_MAPS_API_KEY'] =%>
-    <style>
-      #map {
-        height: 80%;
-      }
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
   </head>
-
   <body>
     <%= yield %>
   </body>
