@@ -21,6 +21,4 @@ class Vehicle < ApplicationRecord
     sql_query = sql_query.gsub(%r'\n', ' ').gsub(%r'\s{2,}', ' ').strip
     self.find_by_sql(sql_query)
   }
-
-
 end

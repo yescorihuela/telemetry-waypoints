@@ -1,11 +1,10 @@
 module Services
   class LastWaypointsVehicle
     def self.get_or_create_vehicle_in_cache(vehicle_identifier, vehicle_obj)
-      if vehicle_identifier.nil?
-        Rails.cache.read(vehicle_identifier)
-      else
-        Rails.cache.write(vehicle_identifier, vehicle_obj)
-      end
+
+      vehicle_identifier.nil? ?
+      Rails.cache.read(vehicle_identifier) :
+      Rails.cache.write(vehicle_identifier, vehicle_obj)
     end
 
     def self.get_vehicles_latest_waypoints()

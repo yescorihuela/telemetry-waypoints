@@ -1,4 +1,4 @@
-class LogFormatter < ActiveSupport::Logger::SimpleFormatter
+class CustomLogger < ActiveSupport::Logger::Formatter
   SEVERITY_COLOR_MAP   = {'DEBUG'=>'0;37', 'INFO'=>'32', 'WARN'=>'33', 'ERROR'=>'31', 'FATAL'=>'31', 'UNKNOWN'=>'37'}
 
   def call(severity, time, progname, msg)

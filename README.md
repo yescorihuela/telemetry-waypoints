@@ -6,8 +6,8 @@ The technologies used for this assessment are the following below:
 
 - Ruby 3.2.0
 - Rails 6.1
-- Docker 19.03.5
-- Docker Compose 1.25.4
+- Docker 27.2.0
+- Docker Compose 2.29.2
 - PostgreSQL 16
 - Redis 5.0.8
 - GoogleMaps 
@@ -30,21 +30,22 @@ There are only two models:
 - **Vehicle**: Almacena el `vehicle_identifier` con una llave primaria, es único.
 - **Waypoint**: Almacena datos de mediciones y se encuentra relacionado con Vehicle a través de una llave foránea (`vehicle_id`)
 
-### Ejecución del proyecto
-Dado a que este proyecto se levantó en base a Docker por las ventajas que ofrece, su puesta en marcha es de la siguiente manera (el autor supone que el evaluador posee Docker instalado en la máquina):
+### Project execution
+Since this project was running on Docker, its bootstrapping is executed by the following below instructions (the evaluator has installed Docker on his own machine):
 
-1. `(project-directory)$ docker compose up --build -d # -d por si desean demonizarlo`
-2. `(project-directory)$ docker compose exec app_backend rake db:create && rake db:migrate # para la creación de la base de datos y la ejecución de las migraciones`
+1. `(project-directory)$ docker compose up --build -d # -d If you want to demonize the execution is in background`
+2. `(project-directory)$ docker compose exec app_backend rake db:create # To create database`
+3. `(project-directory)$ docker compose exec app_backend rake db:migrate # To run migrations`
 
 ### Google API
 Se ha definido una `GOOGLE_MAPS_API_KEY` en el archivo `.env` del contenedor app_backeend para trabajar en modo developer con la API de Google Maps.
 
-### Variables de entorno
+### Environment variables
 Fueron definidas diversas variables de entorno en los archivos .env y .env.postgres para la configuración de bases de datos y puest en marcha de servicios de bases de datos.
 ```bash
-POSTGRES_DB=beetrack
+POSTGRES_DB=telemetry-waypoints-db
 POSTGRES_USER=postgres
-POSTGRES_PASSWORD=beetrack
+POSTGRES_PASSWORD=postgres
 POSTGRES_HOST=db_measurements
 
 REDIS_URL=redis://redis:6379/0 
