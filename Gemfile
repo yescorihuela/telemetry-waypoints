@@ -18,7 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -28,7 +28,7 @@ gem 'redis', '~> 4.0'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
+# gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -46,3 +46,5 @@ gem 'sinatra', require: nil
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'rack-cors', '~> 2.0', '>= 2.0.2'
