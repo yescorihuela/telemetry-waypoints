@@ -85,7 +85,6 @@ const App: React.FC = () => {
           marker.setMap(null);
         })
       }
-      console.log("before => ", markers.length);
       
       const currSelectedVehicles = vehicles.filter(v => v.vehicle_identifier === e.target.value)
       const arrMarkers = new Array<google.maps.Marker>()
@@ -112,7 +111,6 @@ const App: React.FC = () => {
         arrMarkers.push(marker);
       });
       setSelectedVehicles(currSelectedVehicles);
-      console.log("after => ", arrMarkers.toString())
       arrMarkers.forEach(m => m.setMap(map))
       setMarkers(arrMarkers);
     }
