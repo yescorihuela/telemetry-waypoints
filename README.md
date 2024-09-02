@@ -35,6 +35,8 @@ The application includes two primary models:
 
 Since this project is containerized with Docker, you can bootstrap and run it with the following commands (assuming Docker is already installed on your machine):
 
+
+### backend
 ```bash
 # Build and start the containers in the background
 $ docker compose up --build -d
@@ -46,9 +48,22 @@ $ docker compose exec app_backend rake db:create
 $ docker compose exec app_backend rake db:migrate
 ```
 
+### frontend
+The frontend was built on Vite with TS template.
+```bash
+
+$ cd frontend
+$ npm install
+$ npm run dev
+```
+
+Check `http://localhost:5173/` address to load the frontend app on browser
+
+![basic operation](./public/basic-operation.gif)
+
 ## Google API
 
-A `GOOGLE_MAPS_API_KEY` has been defined in the `.env` file of the `app_backend` container to work with the Google Maps API in developer mode.
+A `GOOGLE_MAPS_API_KEY` has been defined in the `.env` file into the `frontend` folder to work with the Google Maps API in developer mode.
 
 ## Environment Variables
 
@@ -97,6 +112,7 @@ To run the tests, use the following command:
 $ rspec spec/models_or_controllers/file_spec.rb
 ```
 
-## Disclaimer
+## Disclaimer / WIP
 
-A strategy for preloading existing vehicles into the cache was missing, which would have allowed for a "prewarming" of the application, leading to better initial performance.
+- A strategy for preloading existing vehicles into the cache was missing, which would have allowed for a "prewarming" of the application, leading to better initial performance.
+- Dockerize the frontend app
