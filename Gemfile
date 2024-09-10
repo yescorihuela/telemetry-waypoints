@@ -37,6 +37,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.9', '>= 3.9.1'
   gem 'shoulda-matchers', '~> 4.3'
+  gem 'faker'
+  gem 'httparty'
 end
 
 gem 'listen', '~> 3.2', '>= 3.2.1'
